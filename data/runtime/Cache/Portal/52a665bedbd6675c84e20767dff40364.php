@@ -52,20 +52,26 @@
 			<div  class="mainbar_con" ><h2><span ><?php echo ($name); ?></span></h2></div>
 
 
-			<?php $lists = sp_sql_posts_paged_bycatid($cat_id,"",20); ?>
+			<?php $pagetpl = '<div class="pagenavi">{first}{prev}{liststart}{list}{listend}{next}{last}</div>'; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:post_date",1,$pagetpl); ?>
 			<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta=json_decode($vo['smeta'], true); ?>
 
 
 				<div class="article">
-					<h2><a href="#">申能奉贤热电工程主厂房浇筑第一罐混凝土</a></h2>
+					<h2><a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>"><?php echo ($vo["post_title"]); ?></a></h2>
 					<div class="clr"></div>
-					<p class="post-data"><span class="date">信息来源：总公司</span> &nbsp;|&nbsp; 发布时间：2017年4月5日 &nbsp;|&nbsp; 浏览量：28 </p>
-					<p>  4月27日上午10时18分，随着搅拌罐隆隆翻滚，泵机长臂舒展，申能奉贤热电工程主厂房顺利浇筑了第一罐混凝土。股东方代表、公司全体员工以及设计单位、监理单位、施工单位等相关工作人员共同见证了这一重要时刻，第一罐混凝土的浇筑标志着申能奉贤热电工程正式开工。
-						<a href="#" title="详细">了解详细</a></p>
+					<p class="post-data"><span class="date">信息来源：<?php echo ($vo["post_source"]); ?></span> &nbsp;|&nbsp; 发布时间：<?php echo ($vo["post_date"]); ?> &nbsp;|&nbsp; 浏览量：<?php echo ($vo["post_hits"]); ?> </p>
+					<p>  <?php echo ($vo["post_excerpt"]); ?>
+						<a href="<?php echo leuu('article/index',array('id'=>$vo['tid']));?>" title="详细">了解详细</a></p>
 					<div class="clr"></div>
 				</div>
 				<hr /><?php endforeach; endif; else: echo "" ;endif; ?>
 
+				<style>
+					.pagenavi li{
+						display: inline;
+					}
+				</style>
+					<?php echo ($lists['page']); ?>
 
 
 
@@ -76,7 +82,8 @@
 
 
 
-				<div class="pagenavi"><span class="pages">36条资讯 共5页</span><span class="current">1</span><a href="#" title="2">2</a><a href="#" title="2">3</a><a href="#" title="2">4</a><a href="#" title="2">5</a><a href="#" >&raquo;</a></div>
+
+				<!--<div class="pagenavi"><span class="pages">36条资讯 共5页</span><span class="current">1</span><a href="#" title="2">2</a><a href="#" title="2">3</a><a href="#" title="2">4</a><a href="#" title="2">5</a><a href="#" >&raquo;</a></div>-->
 		</div>
 		<div class="sidebar">
 
@@ -98,30 +105,17 @@
 			<div class="gadget">
 				<div class="tit_310"><span>本月热门</span></div>
 				<div class="clr"></div>
+
+				<?php $hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;"); ?>
 				<ul class="sb_menu2">
-					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-					</a> <span>17-07-05</span> </li>
-					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">公司党组理论学习中心组进行"一带一...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">国家电网光伏扶贫值得称道
-					</a><span>17-07-05</span></li>
-					<li><a href="#">规矩多了，安全才有保障
-					</a><span>17-07-05</span></li>
-					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
-					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-					</a> <span>17-07-05</span> </li>
-					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">公司党组理论学习中心组进行"一带一...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">国家电网光伏扶贫值得称道
-					</a><span>17-07-05</span></li>
-					<li><a href="#">规矩多了，安全才有保障
-					</a><span>17-07-05</span></li>
-					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+					<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): $top=$key<3?"top3":""; ?>
+
+						<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo["post_title"]); ?>
+						</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endforeach; endif; ?>
 				</ul>
+
+
+
 			</div>
 
 

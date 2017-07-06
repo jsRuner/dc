@@ -5,3 +5,37 @@ ERR: 1054:Unknown column 'post_date' in 'field list'
 [ 2017-07-06T19:55:49+08:00 ] 172.17.0.1 /index.php?g=&m=admin_term&a=edit&id=4
 ERR: 模板不存在:admin/themes/simplebootx/Portal/Admin_term/edit.html
 
+[ 2017-07-06T20:21:32+08:00 ] 172.17.0.1 /index.php?g=&m=AdminPost&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001499s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.005623s ]
+INFO: Run Common\Behavior\UrldecodeGetBehavior [ RunTime:0.001370s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010582s ]
+INFO: [ admin_begin ] --START--
+INFO: Run Common\Behavior\AdminDefaultLangBehavior [ RunTime:0.003201s ]
+INFO: [ admin_begin ] --END-- [ RunTime:0.003381s ]
+SQL: SHOW COLUMNS FROM `dc_users` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `dc_users` WHERE `id` = '1' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `dc_posts` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `dc_terms` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `dc_term_relationships` [ RunTime:0.0013s ]
+SQL: INSERT INTO `dc_posts` (`post_title`,`post_keywords`,`post_source`,`post_excerpt`,`post_date`,`post_status`,`istop`,`recommended`,`post_content`,`post_modified`,`post_author`,`smeta`) VALUES ('xxxxx','xxxxx','xxxx','xxxx','2017-07-06 20:21:19','1','0','0','<p>xxxxxxx</p>','2017-07-06 20:21:32','1','{\"thumb\":\"\",\"template\":\"\"}') [ RunTime:0.0041s ]
+SQL: INSERT INTO `dc_term_relationships` (`term_id`,`object_id`) VALUES ('10','3') [ RunTime:0.0019s ]
+
+[ 2017-07-06T20:22:45+08:00 ] 172.17.0.1 /index.php?g=&m=AdminPost&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001229s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.006391s ]
+INFO: Run Common\Behavior\UrldecodeGetBehavior [ RunTime:0.001688s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010610s ]
+INFO: [ admin_begin ] --START--
+INFO: Run Common\Behavior\AdminDefaultLangBehavior [ RunTime:0.004868s ]
+INFO: [ admin_begin ] --END-- [ RunTime:0.005050s ]
+SQL: SHOW COLUMNS FROM `dc_users` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `dc_users` WHERE `id` = '1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `dc_posts` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `dc_terms` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `dc_term_relationships` [ RunTime:0.0005s ]
+SQL: INSERT INTO `dc_posts` (`post_title`,`post_keywords`,`post_source`,`post_excerpt`,`post_date`,`post_status`,`istop`,`recommended`,`post_content`,`post_modified`,`post_author`,`smeta`) VALUES ('ffff','fff','fff','ffff','2017-07-06 20:22:34','1','0','0','<p>fffff</p>','2017-07-06 20:22:45','1','{\"thumb\":\"\",\"template\":\"\"}') [ RunTime:0.0028s ]
+SQL: INSERT INTO `dc_term_relationships` (`term_id`,`object_id`) VALUES ('10','4') [ RunTime:0.0134s ]
+
