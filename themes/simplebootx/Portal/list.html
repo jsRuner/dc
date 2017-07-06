@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>淮北申能_新闻资讯</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<tc_include file="Public:head" />
+	<!-- CuFon ends -->
+</head>
+<body>
+<div class="main">
+	<div class="header2">
+		<tc_include file="Public:nav" />
+		<div style="background:url(__TMPL__Public/assets/images/header6_img.jpg); height:240px">
+
+
+			<div class="clr"></div>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="content">
+		<div class="mainbar" style="background:#FFF; padding:10px; width:630px">
+			<div  class="mainbar_con" ><h2><span >{$name}</span></h2></div>
+
+
+			<php>
+				$lists = sp_sql_posts_paged_bycatid($cat_id,"",20);
+
+			</php>
+			<volist name="lists['posts']" id="vo">
+				<php>
+					$smeta=json_decode($vo['smeta'], true);
+				</php>
+
+
+				<div class="article">
+					<h2><a href="#">申能奉贤热电工程主厂房浇筑第一罐混凝土</a></h2>
+					<div class="clr"></div>
+					<p class="post-data"><span class="date">信息来源：总公司</span> &nbsp;|&nbsp; 发布时间：2017年4月5日 &nbsp;|&nbsp; 浏览量：28 </p>
+					<p>  4月27日上午10时18分，随着搅拌罐隆隆翻滚，泵机长臂舒展，申能奉贤热电工程主厂房顺利浇筑了第一罐混凝土。股东方代表、公司全体员工以及设计单位、监理单位、施工单位等相关工作人员共同见证了这一重要时刻，第一罐混凝土的浇筑标志着申能奉贤热电工程正式开工。
+						<a href="#" title="详细">了解详细</a></p>
+					<div class="clr"></div>
+				</div>
+				<hr />
+
+			</volist>
+
+
+			<div class="pagination">
+				<ul>
+					{$result['page']}
+				</ul>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+				<!--<div class="pagenavi"><span class="pages">36条资讯 共5页</span><span class="current">1</span><a href="#" title="2">2</a><a href="#" title="2">3</a><a href="#" title="2">4</a><a href="#" title="2">5</a><a href="#" >&raquo;</a></div>-->
+		</div>
+		<div class="sidebar">
+
+
+			<div class="gadget" style="border:1px solid #CCC; background:#fff; padding:0">
+				<h2 class="star" style="padding-left:10px"><span>新闻资讯</span> </h2>
+				<div class="clr"></div>
+				<ul class="sb_menu_x" style=" margin:0px " >
+
+					<php>
+						$term_id=8;
+						$terms=sp_get_child_terms($term_id ); //获取子分类信息
+					</php>
+					<foreach name="terms" item="vo">
+						<!--打印出分类名称 -->
+						<li>
+							<a href="{:leuu('list/index',array('id'=>$vo['term_id']))}">{$vo.name}</a>
+						</li>
+
+					</foreach>
+
+				</ul>
+			</div>
+
+			<div class="gadget">
+				<div class="tit_310"><span>本月热门</span></div>
+				<div class="clr"></div>
+				<ul class="sb_menu2">
+					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
+					</a> <span>17-07-05</span> </li>
+					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
+					</a><span>17-07-05</span></li>
+					<li><a href="#">公司党组理论学习中心组进行"一带一...
+					</a><span>17-07-05</span></li>
+					<li><a href="#">国家电网光伏扶贫值得称道
+					</a><span>17-07-05</span></li>
+					<li><a href="#">规矩多了，安全才有保障
+					</a><span>17-07-05</span></li>
+					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
+					</a> <span>17-07-05</span> </li>
+					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
+					</a><span>17-07-05</span></li>
+					<li><a href="#">公司党组理论学习中心组进行"一带一...
+					</a><span>17-07-05</span></li>
+					<li><a href="#">国家电网光伏扶贫值得称道
+					</a><span>17-07-05</span></li>
+					<li><a href="#">规矩多了，安全才有保障
+					</a><span>17-07-05</span></li>
+					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+				</ul>
+			</div>
+
+
+		</div>
+		<div class="clr"></div>
+	</div>
+
+	<tc_include file="Public:footer" />
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+[ 2017-07-06T19:53:48+08:00 ] 172.17.0.1 /index.php?m=list&a=index&id=8
+ERR: 1054:Unknown column 'post_date' in 'field list'
+ [ SQL语句 ] : SELECT `post_date`,`post_content` FROM `dc_terms` WHERE `status` = 1 AND `term_id` IN (1,2) ORDER BY post_date DESC LIMIT 10  
+
+[ 2017-07-06T19:55:49+08:00 ] 172.17.0.1 /index.php?g=&m=admin_term&a=edit&id=4
+ERR: 模板不存在:admin/themes/simplebootx/Portal/Admin_term/edit.html
+
