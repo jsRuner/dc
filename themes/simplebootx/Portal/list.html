@@ -74,8 +74,7 @@
 				<ul class="sb_menu_x" style=" margin:0px " >
 
 					<php>
-						$term_id=8;
-						$terms=sp_get_child_terms($term_id ); //获取子分类信息
+						$terms=sp_get_child_terms($cat_id); //获取子分类信息
 					</php>
 					<foreach name="terms" item="vo">
 						<!--打印出分类名称 -->
