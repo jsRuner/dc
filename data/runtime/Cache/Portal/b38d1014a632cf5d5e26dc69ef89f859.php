@@ -41,7 +41,23 @@
 	</div>
 </div>
 		<div style="background:url(/themes/simplebootx/Public/assets/images/banner_bg.jpg)">
-			<div class="hbg"><img src="/themes/simplebootx/Public/assets/images/header_images.jpg" width="968"   alt="header images" class="fr" />
+			<div class="hbg">
+
+				<?php $home_slides=sp_getslide("portal_index"); ?>
+
+				<?php if(is_array($home_slides)): foreach($home_slides as $k=>$vo): if($k ==1 ): ?><a href="<?php echo ($vo["slide_url"]); ?>">
+							<img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" alt="">
+						</a>
+
+						<?php else: ?>
+
+						<a href="<?php echo ($vo["slide_url"]); ?>" style="display: none">
+							<img src="<?php echo sp_get_asset_upload_path($vo['slide_pic']);?>" alt="">
+						</a><?php endif; endforeach; endif; ?>
+
+
+
+				<!--<img src="/themes/simplebootx/Public/assets/images/header_images.jpg" width="968"   alt="header images" class="fr" />-->
 			</div>
 
 			<div class="clr"></div>
@@ -55,23 +71,34 @@
 				<div class="clr"></div>
 
 				<div class="sb_menu3_d">
-					<img src="/themes/simplebootx/Public/assets/images/img_02.jpg" />
+
+
+					<?php $cat_id = 8; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",5); ?>
+					<?php if(is_array($lists['posts'])): $k = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k; $smeta=json_decode($vo['smeta'], true); ?>
+
+						 <?php if($k ==1 ): ?><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>">
+								<img style="width: 259px; height: 225px;" src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" alt="">
+							</a>
+
+
+								<?php else: ?>
+
+						<a style="display: none" href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>">
+							<img style="width: 259px; height: 225px;" src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" alt="">
+						</a><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+
+
+
+
+
+
 					<ul class="sb_menu3">
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">公司党组理论学习中心组进行"一带一...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">国家电网光伏扶贫值得称道
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
-						<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
+
+						<?php $cat_id = 8; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",8); ?>
+						<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta=json_decode($vo['smeta'], true); ?>
+
+							<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo['post_title']); ?>...
+							</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endforeach; endif; else: echo "" ;endif; ?>
 
 					</ul><div class="clr"></div>
 				</div>
@@ -80,40 +107,28 @@
 
 			<div class="gadget" style="padding:5px ">
 				<div style=" float:left">
-					<div class="tit_310_2"><span>公司发文</span><span class="mores" ><a href="#">更多>></a></span></div>
+					<div class="tit_310_2"><span>公司发文</span><span class="mores" ><a href="<?php echo leuu('list/index',array('id'=>12));?>">更多>></a></span></div>
 					<div class="clr"></div>
 					<ul class="sb_menu2">
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">公司党组理论学习中心组进行"一带一...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">国家电网光伏扶贫值得称道
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
-						<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+						<?php $cat_id = 12; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",6); ?>
+						<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta=json_decode($vo['smeta'], true); ?>
 
+							<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo['post_title']); ?>...
+							</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endforeach; endif; else: echo "" ;endif; ?>
 
 					</ul>
 				</div>
 				<div style=" float:right">
-					<div class="tit_310_2"><span>公司制度</span><span class="mores" ><a href="#">更多>></a></span></div>
+					<div class="tit_310_2"><span>公司制度</span><span class="mores" ><a href="<?php echo leuu('list/index',array('id'=>13));?>">更多>></a></span></div>
 					<div class="clr"></div>
 					<ul class="sb_menu2">
 
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">公司党组理论学习中心组进行"一带一...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">国家电网光伏扶贫值得称道
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
-						<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+						<?php $cat_id = 13; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",6); ?>
+						<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta=json_decode($vo['smeta'], true); ?>
+
+							<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo['post_title']); ?>...
+							</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endforeach; endif; else: echo "" ;endif; ?>
+
 					</ul>
 				</div>
 				<div class="clr"></div>
@@ -121,51 +136,54 @@
 
 			<div class="gadget" style="padding:5px ">
 				<div style=" float:left">
-					<div class="tit_310_2"><span>党团工作</span><span class="mores" ><a href="#">更多>></a></span></div>
+					<div class="tit_310_2"><span>党团工作</span><span class="mores" ><a href="<?php echo leuu('list/index',array('id'=>15));?>">更多>></a></span></div>
 					<div class="clr"></div>
 
 					<ul class="sb_menu2">
-						<div class="con_s">
-							<img src="/themes/simplebootx/Public/assets/images/img_03.jpg" />
-							<p><span><a href="#">社会主义核心价值观</a><br /></span>社会主义核心价值观是社会主义核心价值体系的内核...</p>
-							<div class="clr"></div>
-						</div>
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">公司党组理论学习中心组进行"一带一...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">国家电网光伏扶贫值得称道
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
-						<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
 
+						<?php $cat_id = 15; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",6); ?>
+						<?php if(is_array($lists['posts'])): $k = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k; $smeta=json_decode($vo['smeta'], true); ?>
+
+							<?php if($k == 1): ?><div class="con_s">
+
+
+
+
+									<img src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" />
+									<p><span><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo["post_title"]); ?></a><br /></span><?php echo ($vo["post_excerpt"]); ?>...</p>
+									<div class="clr"></div>
+								</div>
+
+								<?php else: ?>
+
+
+								<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo['post_title']); ?>...
+								</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 
 					</ul>
 				</div>
 				<div style=" float:right">
-					<div class="tit_310_2"><span>下载中心</span><span class="mores" ><a href="#">更多>></a></span></div>
+					<div class="tit_310_2"><span>下载中心</span><span class="mores" ><a href="<?php echo leuu('list/index',array('id'=>18));?>">更多>></a></span></div>
 					<div class="clr"></div>
 					<ul class="sb_menu2">
-						<div class="con_s2">
-							<img src="/themes/simplebootx/Public/assets/images/img_04.jpg" />
-							<p><span><a href="#">电站安全知识手册 [点击下载]</a><br /></span>更新时间：17-04-02 <br /> 文件大小：15kb | 文件类型：docx</p>
-							<div class="clr"></div>
-						</div>
-						<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-						</a> <span>17-07-05</span> </li>
-						<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">公司党组理论学习中心组进行"一带一...
-						</a><span>17-07-05</span></li>
-						<li><a href="#">国家电网光伏扶贫值得称道
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
-						<li><a href="#">规矩多了，安全才有保障
-						</a><span>17-07-05</span></li>
+						<?php $cat_id = 18; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",6); ?>
+						<?php if(is_array($lists['posts'])): $k = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k; $smeta=json_decode($vo['smeta'], true); ?>
+
+							<?php if($k == 1): ?><div class="con_s">
+
+
+
+
+									<img src="<?php echo sp_get_asset_upload_path($smeta['thumb']);?>" />
+									<p><span><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo["post_title"]); ?></a><br /></span><?php echo ($vo["post_excerpt"]); ?>...</p>
+									<div class="clr"></div>
+								</div>
+
+								<?php else: ?>
+
+
+								<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo['post_title']); ?>...
+								</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 
 					</ul>
 				</div>
@@ -179,10 +197,16 @@
 				<div class="tit_310"><span>通知公告</span></div>
 				<div class="clr"></div>
 				<ul class="sb_menu">
-					<div class="tit"><a href="#">提高应急处置能力 保障电网安</a></div>
-					<div class="con">为提高迎峰度夏期间国家电网公司对重大电网事故的应急处置能力，检验公司系统各单位对大面积停电事件的快速响应和应急管理水平，保障电网运行安全和电力可靠供应，7月4日上午，公司组织开展了2017年迎峰度夏反事故应急演练。这次大规模、综合性实战演练参演单位及厂站超过260家，参演人数达5000余人。
-					</div>
-					<div class="more"><a href="#">查看更多</a></div>
+
+					<?php $cat_id = 14; $lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",1); ?>
+					<?php if(is_array($lists['posts'])): $i = 0; $__LIST__ = $lists['posts'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; $smeta=json_decode($vo['smeta'], true); ?>
+
+						<div class="tit"><a href="#"><?php echo ($vo["post_title"]); ?></a></div>
+						<div class="con"><?php echo ($vo["post_excerpt"]); ?>
+						</div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+
+					<div class="more"><a href="<?php echo leuu('list/index',array('id'=>14));?>">查看更多</a></div>
 				</ul>
 			</div>
 
@@ -194,40 +218,37 @@
 				<div class="tit_310"><span>本月热门</span></div>
 				<div class="clr"></div>
 				<ul class="sb_menu2">
-					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-					</a> <span>17-07-05</span> </li>
-					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">公司党组理论学习中心组进行"一带一...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">国家电网光伏扶贫值得称道
-					</a><span>17-07-05</span></li>
-					<li><a href="#">规矩多了，安全才有保障
-					</a><span>17-07-05</span></li>
-					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
-					<li class="active"><a href="#">2017年迎峰度夏反事故应急演练成功...
-					</a> <span>17-07-05</span> </li>
-					<li><a href="#">安全飞检"三把锁""安全生产万里行"...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">公司党组理论学习中心组进行"一带一...
-					</a><span>17-07-05</span></li>
-					<li><a href="#">国家电网光伏扶贫值得称道
-					</a><span>17-07-05</span></li>
-					<li><a href="#">规矩多了，安全才有保障
-					</a><span>17-07-05</span></li>
-					<li><a href="#" title="Website Templates">新一轮农网改造升级工程系列</a><span>17-07-05</span></li>
+
+					<?php $hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;"); ?>
+					<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): $top=$key<3?"top3":""; ?>
+
+						<li><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo["post_title"]); ?>
+						</a> <span><?php echo (date("y-m-d",strtotime($vo["post_date"]))); ?></span> </li><?php endforeach; endif; ?>
+
+
+
 				</ul>
 			</div>
 
 		</div>
 		<div class="clr"></div>
 	</div>
-	<div class="link">
-		<div class="link_con">友情链接</div>
-		<div class="link_con2"><a href="#">国家电网</a><a href="#">国家电网</a><a href="#">国家电网</a><a href="#">国家电网</a><a href="#">国家电网</a><a href="#">国家电网</a></div>
-	</div>
+
 
 	
+<div class="link">
+	<div class="link_con">友情链接</div>
+
+
+	<div class="link_con2">
+
+		<?php $links=sp_getlinks(); ?>
+		<?php if(is_array($links)): foreach($links as $key=>$vo): ?><a href="<?php echo ($vo["link_url"]); ?>" target="<?php echo ($vo["link_target"]); ?>"><?php echo ($vo["link_name"]); ?></a><?php endforeach; endif; ?>
+	</div>
+
+
+</div>
+
 <div class="footer">
 	<div class="footer_resize">
 		<p class="lf">Copyright © 2013 <a href="#">申能（集团）有限公司</a>版权所有  网站备案号：沪ICP备0501160号 </p>

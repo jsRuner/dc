@@ -1,4 +1,23 @@
 
+<div class="link">
+	<div class="link_con">友情链接</div>
+
+
+	<div class="link_con2">
+
+		<php>
+			$links=sp_getlinks();
+		</php>
+		<foreach name="links" item="vo">
+
+			<a href="{$vo.link_url}" target="{$vo.link_target}">{$vo.link_name}</a>
+
+		</foreach>
+	</div>
+
+
+</div>
+
 <div class="footer">
 	<div class="footer_resize">
 		<p class="lf">Copyright © 2013 <a href="#">申能（集团）有限公司</a>版权所有  网站备案号：沪ICP备0501160号 </p>

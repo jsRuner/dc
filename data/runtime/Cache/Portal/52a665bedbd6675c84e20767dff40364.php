@@ -93,7 +93,7 @@
 				<div class="clr"></div>
 				<ul class="sb_menu_x" style=" margin:0px " >
 
-					<?php $term_id=8; $terms=sp_get_child_terms($term_id ); ?>
+					<?php $terms=sp_get_child_terms($cat_id); ?>
 					<?php if(is_array($terms)): foreach($terms as $key=>$vo): ?><!--打印出分类名称 -->
 						<li>
 							<a href="<?php echo leuu('list/index',array('id'=>$vo['term_id']));?>"><?php echo ($vo["name"]); ?></a>
@@ -106,8 +106,8 @@
 				<div class="tit_310"><span>本月热门</span></div>
 				<div class="clr"></div>
 
-				<?php $hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;"); ?>
 				<ul class="sb_menu2">
+					<?php $hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;"); ?>
 					<?php if(is_array($hot_articles)): foreach($hot_articles as $key=>$vo): $top=$key<3?"top3":""; ?>
 
 						<li class="active"><a href="<?php echo leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']));?>"><?php echo ($vo["post_title"]); ?>
@@ -124,6 +124,19 @@
 	</div>
 
 	
+<div class="link">
+	<div class="link_con">友情链接</div>
+
+
+	<div class="link_con2">
+
+		<?php $links=sp_getlinks(); ?>
+		<?php if(is_array($links)): foreach($links as $key=>$vo): ?><a href="<?php echo ($vo["link_url"]); ?>" target="<?php echo ($vo["link_target"]); ?>"><?php echo ($vo["link_name"]); ?></a><?php endforeach; endif; ?>
+	</div>
+
+
+</div>
+
 <div class="footer">
 	<div class="footer_resize">
 		<p class="lf">Copyright © 2013 <a href="#">申能（集团）有限公司</a>版权所有  网站备案号：沪ICP备0501160号 </p>

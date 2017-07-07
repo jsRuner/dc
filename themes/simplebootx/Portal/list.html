@@ -91,9 +91,9 @@
 				<div class="tit_310"><span>本月热门</span></div>
 				<div class="clr"></div>
 
-				<php>$hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;");
-				</php>
 				<ul class="sb_menu2">
+					<php>$hot_articles=sp_sql_posts("field:post_title,post_date,post_excerpt,object_id,term_id,smeta;order:post_hits desc;limit:5;");
+					</php>
 					<foreach name="hot_articles" item="vo">
 						<php>$top=$key<3?"top3":"";</php>
 
