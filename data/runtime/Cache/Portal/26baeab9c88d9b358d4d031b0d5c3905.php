@@ -17,6 +17,155 @@
 
 	<link href="/themes/simplebootx/Public/assets/css/style.css" rel="stylesheet">
 
+
+    <style>
+        #slides {
+            display: none
+        }
+
+        #slides .slidesjs-navigation {
+            margin-top:5px;
+        }
+
+        a.slidesjs-next,
+        a.slidesjs-previous,
+        a.slidesjs-play,
+        a.slidesjs-stop {
+            background-image: url(/themes/simplebootx/Public/assets/images/btns-next-prev.png);
+            background-repeat: no-repeat;
+            display:block;
+            width:12px;
+            height:18px;
+            overflow: hidden;
+            text-indent: -9999px;
+            float: left;
+            margin-right:5px;
+        }
+
+        a.slidesjs-next {
+            margin-right:10px;
+            background-position: -12px 0;
+        }
+
+        a:hover.slidesjs-next {
+            background-position: -12px -18px;
+        }
+
+        a.slidesjs-previous {
+            background-position: 0 0;
+        }
+
+        a:hover.slidesjs-previous {
+            background-position: 0 -18px;
+        }
+
+        a.slidesjs-play {
+            width:15px;
+            background-position: -25px 0;
+        }
+
+        a:hover.slidesjs-play {
+            background-position: -25px -18px;
+        }
+
+        a.slidesjs-stop {
+            width:18px;
+            background-position: -41px 0;
+        }
+
+        a:hover.slidesjs-stop {
+            background-position: -41px -18px;
+        }
+
+        .slidesjs-pagination {
+            margin: 7px 0 0;
+            float: right;
+            list-style: none;
+        }
+
+        .slidesjs-pagination li {
+            float: left;
+            margin: 0 1px;
+        }
+
+        .slidesjs-pagination li a {
+            display: block;
+            width: 13px;
+            height: 0;
+            padding-top: 13px;
+            background-image: url(/themes/simplebootx/Public/assets/images/pagination.png);
+            background-position: 0 0;
+            float: left;
+            overflow: hidden;
+        }
+
+        .slidesjs-pagination li a.active,
+        .slidesjs-pagination li a:hover.active {
+            background-position: 0 -13px
+        }
+
+        .slidesjs-pagination li a:hover {
+            background-position: 0 -26px
+        }
+
+        #slides a:link,
+        #slides a:visited {
+            color: #333
+        }
+
+        #slides a:hover,
+        #slides a:active {
+            color: #9e2020
+        }
+
+        .navbar {
+            overflow: hidden
+        }
+
+        #slides {
+            display: none
+        }
+
+        .container {
+            margin: 0 auto
+        }
+
+        /* For tablets & smart phones */
+        @media (max-width: 767px) {
+            body {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .container {
+                width: auto
+            }
+        }
+
+        /* For smartphones */
+        @media (max-width: 480px) {
+            .container {
+                width: auto
+            }
+        }
+
+        /* For smaller displays like laptops */
+        @media (min-width: 768px) and (max-width: 979px) {
+            .container {
+                width: 724px
+            }
+        }
+
+        /* For larger displays */
+        @media (min-width: 1200px) {
+            .container {
+                width: 975px
+            }
+        }
+        a.slidesjs-navigation{
+            display: none;
+        }
+    </style>
+
 	<!-- CuFon ends -->
 </head>
 <body>
@@ -72,6 +221,19 @@
 	</div>
 
 	
+<div class="link">
+	<div class="link_con">友情链接</div>
+
+
+	<div class="link_con2">
+
+		<?php $links=sp_getlinks(); ?>
+		<?php if(is_array($links)): foreach($links as $key=>$vo): ?><a href="<?php echo ($vo["link_url"]); ?>" target="<?php echo ($vo["link_target"]); ?>"><?php echo ($vo["link_name"]); ?></a><?php endforeach; endif; ?>
+	</div>
+
+
+</div>
+
 <div class="footer">
 	<div class="footer_resize">
 		<p class="lf">Copyright © 2013 <a href="#">申能（集团）有限公司</a>版权所有  网站备案号：沪ICP备0501160号 </p>
@@ -80,6 +242,52 @@
 	</div>
 </div>
 <?php echo ($site_tongji); ?>
+
+
+<script type="text/javascript">
+//全局变量
+var GV = {
+    ROOT: "/",
+    WEB_ROOT: "/",
+    JS_ROOT: "public/js/"
+};
+</script>
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="/public/js/jquery.js"></script>
+
+   <script src="/public/js/jquery.slides.min.js"></script>
+
+<script>
+
+//   首页轮播
+$(function(){
+    $("#slides").slidesjs(
+        {
+            width:968,
+            height:356,
+            play: {
+                active: true,
+                // [boolean] Generate the play and stop buttons.
+                // You cannot use your own buttons. Sorry.
+                effect: "slide",
+                // [string] Can be either "slide" or "fade".
+                interval: 5000,
+                // [number] Time spent on each slide in milliseconds.
+                auto: true,
+                // [boolean] Start playing the slideshow on load.
+                swap: false,
+                // [boolean] show/hide stop and play buttons
+                pauseOnHover: false,
+                // [boolean] pause a playing slideshow on hover
+                restartDelay: 2500
+                // [number] restart delay on inactive slideshow
+            }
+        }
+    );
+});
+
+</script>
+
 
 </div>
 </body>

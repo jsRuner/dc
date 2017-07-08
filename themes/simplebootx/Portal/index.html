@@ -11,42 +11,29 @@
 <div class="main">
 	<div class="header2">
 		<tc_include file="Public:nav" />
-		<div style="background:url(__TMPL__Public/assets/images/banner_bg.jpg)">
-			<div class="hbg">
+		<div class="container" style="width: 972px">
+
+			<div id="slides">
 
 				<php>
 					$home_slides=sp_getslide("portal_index");
 				</php>
 
+
 				<foreach name="home_slides" item="vo" key="k">
 
-					<if condition="$k ==1 ">
+
+
 						<a href="{$vo.slide_url}">
 							<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="">
 						</a>
 
-						<else />
-
-						<a href="{$vo.slide_url}" style="display: none">
-							<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" alt="">
-						</a>
-
-
-					</if>
-
-
-
-
-
 				</foreach>
 
 
-
-				<!--<img src="__TMPL__Public/assets/images/header_images.jpg" width="968"   alt="header images" class="fr" />-->
 			</div>
-
-			<div class="clr"></div>
 		</div>
+
 		<div class="clr"></div>
 	</div>
 	<div class="content">
@@ -58,31 +45,37 @@
 				<div class="sb_menu3_d">
 
 
-					<php>
-						$cat_id = 8;
-						$lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",5);
-					</php>
-					<volist name="lists['posts']" id="vo" key="k">
-						<php>
-							$smeta=json_decode($vo['smeta'], true);
-						</php>
+					<div  style="width: 278px;height:247px; float: left">
 
-						 <if condition="$k ==1 ">
-							<a href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}">
-								<img style="width: 259px; height: 225px;" src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="">
-							</a>
+						<div id="slides_news">
 
 
-								<else/>
+							<php>
+								$cat_id = 8;
+								$lists = sp_sql_posts_paged_bycatid($cat_id,"order:recommended DESC,post_date DESC",5);
+							</php>
+							<volist name="lists['posts']" id="vo" key="k">
+								<php>
+									$smeta=json_decode($vo['smeta'], true);
+								</php>
 
-						<a style="display: none" href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}">
-							<img style="width: 259px; height: 225px;" src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="">
-						</a>
-						</if>
+									<a href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}">
+										<img style="width: 259px; height: 225px;" src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="">
+									</a>
 
 
 
-					</volist>
+
+
+
+							</volist>
+
+
+
+						</div>
+					</div>
+
+
 
 
 

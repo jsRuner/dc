@@ -8,7 +8,61 @@ var GV = {
 </script>
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="__PUBLIC__/js/jquery.js"></script>
+
+   <script src="__PUBLIC__/js/jquery.slides.min.js"></script>
+
 <script>
+
+//   首页轮播
+$(function(){
+    $("#slides").slidesjs(
+        {
+            width:968,
+            height:356,
+            play: {
+                active: true,
+                // [boolean] Generate the play and stop buttons.
+                // You cannot use your own buttons. Sorry.
+                effect: "slide",
+                // [string] Can be either "slide" or "fade".
+                interval: 5000,
+                // [number] Time spent on each slide in milliseconds.
+                auto: true,
+                // [boolean] Start playing the slideshow on load.
+                swap: false,
+                // [boolean] show/hide stop and play buttons
+                pauseOnHover: false,
+                // [boolean] pause a playing slideshow on hover
+                restartDelay: 2500
+                // [number] restart delay on inactive slideshow
+            }
+        }
+    );
+
+    $("#slides_news").slidesjs(
+        {
+            width:263,
+            height:225,
+            play: {
+                active: true,
+                // [boolean] Generate the play and stop buttons.
+                // You cannot use your own buttons. Sorry.
+                effect: "slide",
+                // [string] Can be either "slide" or "fade".
+                interval: 5000,
+                // [number] Time spent on each slide in milliseconds.
+                auto: true,
+                // [boolean] Start playing the slideshow on load.
+                swap: false,
+                // [boolean] show/hide stop and play buttons
+                pauseOnHover: false,
+                // [boolean] pause a playing slideshow on hover
+                restartDelay: 2500
+                // [number] restart delay on inactive slideshow
+            }
+        }
+    );
+});
 
 </script>
 
