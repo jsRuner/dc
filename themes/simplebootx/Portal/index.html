@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>淮北申能_公司制度</title>
+	<title>{$site_name}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<tc_include file="Public:head" />
 	<!-- CuFon ends -->
@@ -260,7 +260,18 @@
 			</div>
 
 			<div class="gadget" style="padding:3px 0">
-				<a href="#"><img src="__TMPL__Public/assets/images/img01.jpg" /></a>
+				<php>
+					$ID=14;    //
+					$page=sp_sql_page($ID);
+
+					$smeta = json_decode($page['smeta'],true);
+
+
+
+
+						/*处理smeta*/
+				</php>
+				<a href="{:leuu('portal/page/index',array('id'=>$ID))}"><img src="{:sp_get_asset_upload_path($smeta['thumb'])}" /></a>
 			</div>
 
 			<div class="gadget">

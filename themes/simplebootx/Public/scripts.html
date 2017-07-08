@@ -35,6 +35,13 @@ $(function(){
                 // [boolean] pause a playing slideshow on hover
                 restartDelay: 2500
                 // [number] restart delay on inactive slideshow
+            },
+            pagination: {
+                active: true,
+                // [boolean] Create pagination items.
+                // You cannot use your own pagination. Sorry.
+                effect: "slide"
+                // [string] Can be either "slide" or "fade".
             }
         }
     );
@@ -62,6 +69,46 @@ $(function(){
             }
         }
     );
+
+    //确保点数居中。
+    function keepCenter(obj) {
+
+    }
+
+    var slides_width = $("#slides").width();
+
+    var ul_width = $("#slides ul").width();
+
+    console.log(slides_width);
+    console.log(ul_width);
+
+    var ul_margin_left = (slides_width-ul_width) / 2 ;
+
+    $("#slides ul").css('margin-left',ul_margin_left);
+    $("#slides ul").css('float','none');
+    $("#slides ul").css('position','relative');
+    $("#slides ul").css('top','-29px');
+    $("#slides ul").css('z-index',111111);
+
+    //新闻动态那里的居中
+
+    var slides_width = $("#slides_news").width();
+
+    var ul_width = $("#slides_news ul").width();
+
+    console.log(slides_width);
+    console.log(ul_width);
+
+    var ul_margin_left = (slides_width-ul_width) / 2 ;
+
+    $("#slides_news ul").css('margin-left',ul_margin_left);
+    $("#slides_news ul").css('float','none');
+    $("#slides_news ul").css('position','relative');
+    $("#slides_news ul").css('top','-29px');
+    $("#slides_news ul").css('z-index',111111);
+
+
+
 });
 
 </script>
